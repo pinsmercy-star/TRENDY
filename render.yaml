@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: trendy
+    runtime: python
+    buildCommand: python trendy_setup.py && pip install -r requirements.txt
+    startCommand: uvicorn app.api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_TELEGRAM_IDS
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FIELD_ENCRYPTION_KEY
+        sync: false
